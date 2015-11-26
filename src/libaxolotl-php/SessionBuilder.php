@@ -77,7 +77,7 @@ class SessionBuilder{
         if (!$this->preKeyStore->containsPreKey($message->getPreKeyId()) &&
             $this->sessionStore->containsSession($this->recipientId, $this->deviceId))
         {
-            Log::warn("v2","We've already processed the prekey part of this V2 session, letting bundled message fall through...");
+            Axolotl_Log::warn("v2","We've already processed the prekey part of this V2 session, letting bundled message fall through...");
             return null;
         }
 
@@ -114,7 +114,7 @@ class SessionBuilder{
         :return:
         */
         if($sessionRecord->hasSessionState($message->getMessageVersion(), $message->getBaseKey()->serialize() )){
-            Log::warn("v3", "We've already setup a session for this V3 message, letting bundled message fall through...");
+            Axolotl_Log::warn("v3", "We've already setup a session for this V3 message, letting bundled message fall through...");
             return null;
         }
 
@@ -258,7 +258,7 @@ class SessionBuilder{
         $isSimultaneousInitiateResponse = $keyExchangeMessage->isResponseForSimultaneousInitiate();
 
         if(!$hasPendingKeyExchange || $sessionState->getPendingKeyExchangeSequence() != $keyExchangeMessage->getSequence()){
-            Log::warn("procResponse","No matching sequence for response. Is simultaneous initiate response:". ($isSimultaneousInitiateResponse?"true":"false"));
+            Axolotl_Log::warn("procResponse","No matching sequence for response. Is simultaneous initiate response:". ($isSimultaneousInitiateResponse?"true":"false"));
             if(!$isSimultaneousInitiateResponse)
                 throw new StaleKeyExchangeException();
             else
