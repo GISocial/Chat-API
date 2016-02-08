@@ -1,5 +1,7 @@
 <?php
 
+use WhatsApp\Log;
+
 require_once __DIR__.'/ecc/Curve.php';
 require_once __DIR__.'/ecc/ECKeyPair.php';
 require_once __DIR__.'/ecc/ECPublicKey.php';
