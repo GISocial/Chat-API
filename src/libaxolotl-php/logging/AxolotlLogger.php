@@ -1,5 +1,7 @@
 <?php
 
+namespace WhatsApp;
+
 abstract class AxolotlLogger
 {
     const VERBOSE = 2;
