@@ -1,5 +1,7 @@
 <?php
 
+namespace WhatsApp;
+
 class AxolotlLoggerProvider
 {
     protected static $provider;    // AxolotlLogger
