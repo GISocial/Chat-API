@@ -446,9 +446,24 @@ class MessageHandler implements Handler
                         'filehash' => bin2hex($image->getSha256()),
                         'width'    => 0,
                         'height'   => 0,
-                        'file'     => $decrypted_image,
+                        'file'     => $decrypted_image ?: $file_enc,
                         'type'     => 'image',
                       ], null, $image->getThumbnail());
+                  $node->addChild($child);
+                break;
+                case 'location':
+                  $location = new Location();
+                  $data = $node->getChild('enc')->getData();
+                  $location->parseFromString($plaintext);
+                  $child = new ProtocolNode('media',
+                    [
+                        'type' => 'location',
+                        'encoding'  => 'raw',
+                        'latitude'  => $location->getLatitude(),
+                        'longitude' => $location->getLongitude(),
+                        'name'      => $location->getName(),
+                        'url'       => $location->getUrl(),
+                    ], null, $location->getThumbnail());
                   $node->addChild($child);
                 break;
               }
