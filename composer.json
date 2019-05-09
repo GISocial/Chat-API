@@ -28,7 +28,6 @@
         "php": ">=5.4",
         "ext-curl": "*",
         "ext-gd" : "*",
-        "ext-mcrypt": "*",
         "ext-openssl" : "*",
         "ext-pdo" : "*",
         "ext-sockets" : "*",
